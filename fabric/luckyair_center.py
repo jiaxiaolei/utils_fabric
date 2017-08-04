@@ -10,21 +10,21 @@ from fabric.api import *
 # env.password='Hkhl2015'
 
 
-##
-
-# 服务器登录用户名:
-env.user = 'w_jiaxiaolei'
-# sudo用户为root:
-env.sudo_user = 'w_jiaxiaolei'
-env.password='111111'
+# # 服务器登录用户名:
+# env.user = 'cic'
+# # sudo用户为root:
+# env.sudo_user = 'cic'
+# env.password='Hkhl2015'
 
 
+# # 服务器地址，可以有多个，依次部署:
+# # env.hosts = ['127.0.0.1']
 
+# # env.hosts=['101.200.189.202']
+# env.hosts=['101.200.199.125']
 
-# 服务器地址，可以有多个，依次部署:
-# env.hosts = ['127.0.0.1']
-
-env.hosts=['101.200.189.202']
+env.host='cic@101.200.199.125:22'
+env.password='Hkhl2015'
 
 
 def hello():
@@ -46,6 +46,11 @@ def hello():
         run('pwd')
         # run('ls -l | wc -l')  #远程操作用run
         run('ls -l')
+
+def sync_log():
+
+    run("rsync -arv /var/log/supervisor cic@101.200.199.125:/home/cic/log_keep/luckyair_test_204")
+    # run("sshpass rsync -arv /var/log/supervisor cic@101.200.199.125:/home/cic/log_keep/luckyair_test_204")
 
 
 
